@@ -1,0 +1,32 @@
+---
+
+volumes:
+  mongodb:
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "27017:27017"
+
+  {{ project_name_kebab_case }}:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: {{ project_name_kebab_case }}
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    ports:
+      - "4242:4242"
+    environment:
+      - KAMIHI_DB__HOST=mongodb
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /app

@@ -1,0 +1,31 @@
+_subdirectory: template
+
+project_name:
+  type: str
+  help: What is your bot's name?
+  placeholder: "My bot"
+  validator: >-
+    {% if not project_name.strip() %}
+    Invalid project name
+    {% endif %}
+
+project_description:
+  type: str
+  help: What does your bot do in one sentence?
+  placeholder: A bot made with the Kamihi framework.
+  validator: >-
+    {% if not project_description.strip() %}
+    Invalid project description
+    {% endif %}
+
+project_name_kebab_case:
+  when: false
+  default: "{{ project_name | lower | replace(' ', '-') }}"
+
+project_name_snake_case:
+  when: false
+  default: "{{ project_name | lower | replace(' ', '_') }}"
+
+kamihi_version:
+  when: false
+  default: "latest"

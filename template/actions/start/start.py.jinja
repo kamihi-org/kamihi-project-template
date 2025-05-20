@@ -1,0 +1,15 @@
+"""
+Start action for {{ project_name }}.
+"""
+
+from kamihi import bot
+
+
+@bot.action
+def start() -> str:
+    """
+    Start action for the bot.
+
+    This function is called when the bot starts.
+    """
+    return f"Hello, I'm your friendly bot. How can I help you today?"

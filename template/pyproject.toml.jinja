@@ -1,0 +1,17 @@
+[project]
+name = "{{ project_name_kebab_case }}"
+version = "0.0.0"
+description = "{{ project_description }}"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+{%- if kamihi_version != "latest" %}
+    "kamihi>={{ kamihi_version }}",
+{% else %}
+    "kamihi",
+{% endif -%}
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
