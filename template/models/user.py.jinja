@@ -1,7 +1,9 @@
-from kamihi import BaseUser
+from kamihi import bot, BaseUser
 from mongoengine import StringField
 
-class KamihiUser(BaseUser):
+
+@bot.user_class
+class User(BaseUser):
     """
     Custom user class for {{ project_name }}.
     This class can be extended to add custom attributes or methods.
