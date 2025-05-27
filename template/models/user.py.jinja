@@ -2,10 +2,12 @@ from kamihi import bot, BaseUser
 from mongoengine import StringField
 
 
-@bot.user_class
+
+# Uncomment the following line if you want to register the user class with the bot
+# @bot.user_class
 class User(BaseUser):
     """
     Custom user class for {{ project_name }}.
     This class can be extended to add custom attributes or methods.
     """
-    name: str = StringField(required=True)
+    name: str = StringField()
