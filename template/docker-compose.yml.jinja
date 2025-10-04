@@ -1,18 +1,21 @@
 volumes:
-  mongodb:
+  pgdata:
 
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
+  postgres:
+    image: postgres:latest
+    container_name: postgres
     restart: unless-stopped
     volumes:
-      - mongodb:/data/db
+      - pgdata:/var/lib/postgresql/data
+
   {{ project_name_kebab_case }}:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: {{ project_name_kebab_case }}
     restart: unless-stopped
+    depends_on:
+      - postgres
     ports:
       - "4242:4242"
